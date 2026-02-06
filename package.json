@@ -1,0 +1,30 @@
+{
+  "name": "dealership-agreement-pdf-api",
+  "version": "1.0.0",
+  "description": "API to generate dealership agreement PDF using PDFKit",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "pdf",
+    "pdfkit",
+    "api",
+    "dealership"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.1",
+    "fs": "^0.0.1-security",
+    "html-to-text": "^9.0.5",
+    "mammoth": "^1.11.0",
+    "path": "^0.12.7",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
