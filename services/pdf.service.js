@@ -1028,6 +1028,239 @@ export const buildAgreementPdf = () => {
 
     doc.moveDown(2);
 
+    // =========================
+    // CLAUSE 21 – Notices
+    // =========================
+    renderClauseHeading(doc, 21, "Notices");
+
+    // Intro paragraph
+    renderSubClause(
+      doc,
+      "",
+      "All notices, demands and other communications given to or made by either party to the other in connection with this Agreement shall be made in writing and addressed to the following authorised representatives and shall be served through speed post or by email only:",
+    );
+
+    // Dealer address block
+    renderSubClause(
+      doc,
+      "",
+      "When addressed to the Dealer:\n" +
+        "Name:\n" +
+        "Designation:\n" +
+        "Address:\n" +
+        "Mobile:\n" +
+        "Email:",
+    );
+
+    doc.moveDown(0.5);
+
+    // Company address block
+    renderSubClause(
+      doc,
+      "",
+      "When addressed to the Company:\n" +
+        "Name: Mr. Ahamed Mohideen Mohamed Muzha Thamim\n" +
+        "Designation: Director\n" +
+        "Address: 409, Dilkap Center, Andheri Kurla, New Link Rd, Next to Akruti Orchid Park, Andheri East, Mumbai, Maharashtra 400072\n" +
+        "Mobile: 9677177750\n" +
+        "Email: thamim@quantique.ai",
+    );
+
+    doc.moveDown(1);
+
+    // Closing paragraph
+    renderSubClause(
+      doc,
+      "",
+      "All notices shall be in writing by way of an email or by facsimile (followed by a confirmation letter by registered mail) or by way of a registered mail.",
+    );
+
+    doc.moveDown(2);
+
+    // =========================
+    // CLAUSE 22 – Miscellaneous
+    // =========================
+    renderClauseHeading(doc, 22, "Miscellaneous");
+
+    renderSubClause(
+      doc,
+      "22.1",
+      "Assignment: The Dealer shall not assign its rights and obligations under this Agreement without the Company’s consent, provided that the Company may assign any of its rights under this Agreement to any of its Affiliates without obtaining the prior written consent of the Dealer.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.2",
+      "Amendment: No variation or amendment of this Agreement shall be binding on any Party unless such variation or amendment is in writing and signed by each Party.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.3",
+      "Survival: Any obligation undertaken hereunder by either Party that, by its nature or its terms, is intended to extend beyond the Term shall survive the termination thereof.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.4",
+      "Entire Agreement: This Agreement cancels and supersedes all previous agreements and arrangements, written or oral, between the Dealer and the Company and relating to the subject matter hereof and constitutes the entire arrangement between the Dealer and the Company, and there are no understandings, representations or warranties expressed or implied not specifically set forth herein.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.5",
+      "Severability: If any provision of this Agreement is determined to be illegal, invalid, or unenforceable by a court of competent jurisdiction, the remaining provisions shall continue in full force and effect. The parties shall negotiate in good faith to replace any invalid provision with a valid one that most closely reflects the original intent.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.6",
+      "Waiver: A waiver of any right or remedy under this Agreement or by law is only effective if given in writing and shall not be deemed a waiver of any subsequent breach or default. A failure or delay by a Party to exercise any right or remedy provided under this Agreement or by law shall not constitute a waiver of that or any other right or remedy, nor shall it prevent or restrict any further exercise of that or any other right or remedy.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.7",
+      "Further Assurances: Each Party shall, at the request and cost of the other, use all reasonable endeavours to promptly do or procure the doing of all such further acts, and execute and deliver or procure the valid execution and delivery of all such documents, as may from time to time be necessary in the requesting Party’s reasonable opinion to give full effect to this Agreement and to secure to the requesting Party the full benefit of the assets, rights, remedies and benefits conferred on it by this Agreement.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.8",
+      "Third Party Rights: Except as expressly provided in this Agreement, a person who is not a Party to this Agreement may not enforce any of its terms. For the avoidance of doubt, this Agreement may be amended or rescinded by agreement between the Parties without the consent of any third party.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.9",
+      "Counterparts: This Agreement may be executed in one or more counterparts, each of which shall be deemed an original but all of which together shall constitute one and the same instrument. This Agreement, when executed in counterparts, shall be deemed to have been executed and delivered as a single instrument and shall be effective as of the date of the last signature provided.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.10",
+      "Representative: Each Party represents and warrants to the other Party that its representative executing this Agreement on its behalf is its duly appointed and acting representative and has the legal capacity required under applicable law to enter into this Agreement and bind it.",
+    );
+
+    renderSubClause(
+      doc,
+      "22.11",
+      "Non-Disparagement: The Dealer agrees that, during the Term of this Agreement and for a period of twelve (12) months following its termination or expiration, it shall not, directly or indirectly, make or publish any statement, whether oral or written, or engage in any conduct, that is defamatory, disparaging, or otherwise prejudicial to the business, reputation, services, officers, directors, employees, clients, or affiliates of the Company.",
+    );
+
+    doc.moveDown(2);
+
+    doc.addPage();
+    doc.x = doc.page.margins.left;
+
+    doc
+      .font("Times-Roman")
+      .fontSize(11)
+      .text(
+        "IN WITNESS WHEREOF the Parties hereto have hereunto and to a duplicate hereof set the hands of the respective authorised officials on the day and year first hereinabove written.",
+        {
+          align: "justify",
+        },
+      );
+
+    doc.moveDown(2);
+    const pageWidth = doc.page.width;
+    const marginLeft = doc.page.margins.left;
+    const marginRight = doc.page.margins.right;
+    const usableWidth = pageWidth - marginLeft - marginRight;
+
+    const tableTopY = doc.y;
+    const rowHeight = 120;
+    const colWidth = usableWidth / 2;
+
+    // Draw table borders
+    doc.rect(marginLeft, tableTopY, usableWidth, rowHeight).stroke();
+
+    doc
+      .moveTo(marginLeft + colWidth, tableTopY)
+      .lineTo(marginLeft + colWidth, tableTopY + rowHeight)
+      .stroke();
+
+    doc
+      .font("Times-Roman")
+      .fontSize(10)
+      .text(
+        "[Authorized Representative Name]\n[Partner/Director/Authorized Representative]",
+        marginLeft + 10,
+        tableTopY + rowHeight - 45,
+        {
+          width: colWidth - 20,
+          align: "center",
+        },
+      );
+
+    doc
+      .font("Times-Bold")
+      .fontSize(10)
+      .text(
+        "QUANTIQUE METADATA PRIVATE LIMITED",
+        marginLeft + colWidth + 10,
+        tableTopY + 15,
+        {
+          width: colWidth - 20,
+          align: "center",
+        },
+      );
+
+    doc
+      .font("Times-Roman")
+      .fontSize(10)
+      .text(
+        "Mr. Ahamed Mohideen Mohamed Muzha Thamim\nDirector",
+        marginLeft + colWidth + 10,
+        tableTopY + rowHeight - 45,
+        {
+          width: colWidth - 20,
+          align: "center",
+        },
+      );
+
+    doc
+      .font("Times-Bold")
+      .fontSize(10)
+      .text(
+        "QUANTIQUE METADATA PRIVATE LIMITED",
+        marginLeft + colWidth + 10,
+        tableTopY + 15,
+        {
+          width: colWidth - 20,
+          align: "center",
+        },
+      );
+
+    doc
+      .font("Times-Roman")
+      .fontSize(10)
+      .text(
+        "Mr. Ahamed Mohideen Mohamed Muzha Thamim\nDirector",
+        marginLeft + colWidth + 10,
+        tableTopY + rowHeight - 45,
+        {
+          width: colWidth - 20,
+          align: "center",
+        },
+      );
+
+    doc.moveDown(8);
+
+    const witnessX = marginLeft + colWidth + 20;
+
+    doc.font("Times-Bold").fontSize(11).text("WITNESS 1:", witnessX);
+
+    doc.moveDown(1);
+
+    doc.font("Times-Bold").fontSize(11).text("WITNESS 2:", witnessX);
+
+    doc
+      .font("Times-Roman")
+      .fontSize(11)
+      .text("Sana Inamdar", witnessX + 70, doc.y - 14);
+
     // END PDF
     doc.end();
   });
