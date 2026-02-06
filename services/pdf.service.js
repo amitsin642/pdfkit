@@ -32,41 +32,58 @@ export const buildAgreementPdf = () => {
     // =========================
     // INTRO
     // =========================
-    normal();
-    doc.text(
-      "THIS Dealership Agreement (hereinafter referred to as the “Agreement”) is made on this ___ day of ______, 2026 (hereinafter referred to as the “Execution Date”) at _________.",
-      { align: "justify" },
-    );
+      normal();
+      doc.text("THIS Dealership Agreement (hereinafter referred to as the ", { continued: true });
 
-    doc.moveDown(2);
+      bold();
+      doc.text("\"Agreement\"", { continued: true });
+
+      normal();
+      doc.text(") is made on this ___ day of ______, 2026 (hereinafter referred to as the ", { continued: true });
+
+      bold();
+      doc.text("\"Execution Date\"", { continued: true });
+
+      normal();
+      doc.text(") at _________.", { align: "justify" });
+
+      doc.moveDown(2);
+
 
     // =========================
     // BY AND BETWEEN
     // =========================
     bold();
-    doc.text("BY AND BETWEEN");
+    doc.text("BY AND BETWEEN", { align: "center" });
     doc.moveDown(1);
 
-    normal();
-    doc.text(
-      "QUANTIQUE METADATA PRIVATE LIMITED (CIN: U72900DL2020PTC360461) a company duly incorporated under the Companies Act, 2013 and having its registered office at 12, First Floor, Hargovind Enclave, Karkardooma, Metro Pillar 118, East Delhi, Delhi, India, 110092, acting through its Director, Mr. Ahamed Mohideen Mohamed Muzha Thamim (hereinafter referred to as the “Company”, which expression shall, unless it be inconsistent to the context or meaning thereof, be deemed to include its successors, representatives in interest and permitted assign) of the FIRST PART;",
-      { align: "justify" },
-    );
-
-    doc.moveDown(2);
-
-    doc.text(
-      "AND __________________, a (Company/LLP/Partnership/Proprietorship) duly incorporated under the provisions of the ___________________ and having its registered office at __________________, acting through its Director/Partner/Authorized Signatory ________________ (hereinafter referred to as the “Dealer”, which expression shall, unless it be inconsistent to the context or meaning thereof, be deemed to include its successors, representatives in interest and permitted assign) of the SECOND PART.",
-      { align: "justify" },
-    );
-
-    doc.moveDown(2);
-
-    // =========================
-    // WHEREAS
-    // =========================
     bold();
-    doc.text("WHEREAS");
+    doc.text("QUANTIQUE METADATA PRIVATE LIMITED (CIN: U72900DL2020PTC360461)", { 
+      align: "justify",
+      continued: true 
+    });
+
+    normal();
+    doc.text("a company duly incorporated under the Companies Act, 2013 and having its registered office at 12, First Floor, Hargovind Enclave, Karkardooma, Metro Pillar 118, East Delhi, Delhi, India, 110092, acting through its Director, Mr. Ahamed Mohideen Mohamed Muzha Thamim (hereinafter referred to as the \"Company\", which expression shall, unless it be inconsistent to the context or meaning thereof, be deemed to include its successors, representatives in interest and permitted assign) of the FIRST PART;", 
+    { align: "justify" });
+
+    doc.moveDown(2);
+
+    bold();
+      doc.text("AND", { align: "center" });
+      doc.moveDown(1);
+
+    doc.text(
+      "__________________, a (Company/LLP/Partnership/Proprietorship) duly incorporated under the provisions of the ___________________ and having its registered office at __________________, acting through its Director/Partner/Authorized Signatory ________________ (hereinafter referred to as the “Dealer”, which expression shall, unless it be inconsistent to the context or meaning thereof, be deemed to include its successors, representatives in interest and permitted assign) of the SECOND PART.",
+      { align: "justify" },
+    );
+
+    doc.moveDown(2);
+
+    // WHEREAS
+
+    bold();
+    doc.text("WHEREAS",{ align: "center" });
     doc.moveDown(1);
 
     renderWhereasPoint(
