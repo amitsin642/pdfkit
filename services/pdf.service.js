@@ -200,7 +200,7 @@ const renderSubClause = (doc, number, text) => {
   const maxWidth =
     doc.page.width - doc.page.margins.right - textX;
 
-  // 👉 Measure height needed for the paragraph
+  // Measure text height
   const textHeight = doc.heightOfString(text, {
     width: maxWidth,
     align: "justify",
@@ -210,7 +210,7 @@ const renderSubClause = (doc, number, text) => {
   const remainingHeight =
     doc.page.height - doc.page.margins.bottom - doc.y;
 
-  // 🔑 If it won't fit, move to next page BEFORE rendering
+  // Page break BEFORE rendering if needed
   if (requiredHeight > remainingHeight) {
     doc.addPage();
     doc.x = startX;
@@ -218,7 +218,7 @@ const renderSubClause = (doc, number, text) => {
 
   const y = doc.y;
 
-  // Sub-clause number
+  // Clause number
   doc.font("Times-Roman").fontSize(11).text(number, numberX, y);
 
   // Clause text
@@ -227,7 +227,7 @@ const renderSubClause = (doc, number, text) => {
     align: "justify",
   });
 
-  // Move cursor safely below block
-  doc.y += 5;
+  // 🔑 Let PDFKit naturally advance Y
+  doc.moveDown(1);
 };
 
